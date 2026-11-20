@@ -1,0 +1,26 @@
+{
+  "name": "midgard-build-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Midgard Survivors build viewer and planner: characters, cards, live session and Bonus summary from your save, read in the browser.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && wrangler deploy",
+    "extract": "node tools/extract-assets.mjs"
+  },
+  "dependencies": {
+    "aes-js": "3.1.2",
+    "fzstd": "0.1.1",
+    "html-to-image": "1.11.13",
+    "js-md5": "0.11.0"
+  },
+  "devDependencies": {
+    "@types/aes-js": "3.1.4",
+    "typescript": "7.0.2",
+    "vite": "8.3.8",
+    "wrangler": "4.132.0"
+  }
+}

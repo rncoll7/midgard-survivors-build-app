@@ -1,0 +1,9 @@
+node_modules
+dist
+.wrangler
+*.local
+.claude
+.env
+.env.*
+# extracted game material (npm run extract): never committed
+public/game

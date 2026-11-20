@@ -1,0 +1,24 @@
+{
+  // Assets-only Worker: Cloudflare serves ./dist straight from the edge, there is no server code.
+  // Game data, text and images come from public/game/ (npm run extract); each player's save is read in their browser.
+  // Docs: https://developers.cloudflare.com/workers/static-assets/
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "midgard-build",
+
+  // Personal Cloudflare account (same as led_scroller). This is the tenant id, not a credential:
+  // pinning it makes a deploy from the wrong login fail instead of publishing into another account.
+  // The credential is CLOUDFLARE_API_TOKEN in .env.local, which is git-ignored by `*.local`.
+  "account_id": "05e0875ce45767a8a0fa2f6c7147216c",
+  "compatibility_date": "2026-09-16",
+
+  "assets": {
+    "directory": "./dist"
+    // `not_found_handling` stays at its default (`none`): pages are hash routes (#/class/mage),
+    // so every page is index.html already, and a missing hashed asset should be a real 404.
+  },
+
+  // The address is the custom domain; `wrangler deploy` creates the DNS record and the certificate
+  // on the first publish. No workers.dev twin serving the same site.
+  "workers_dev": false,
+  "routes": [{ "pattern": "midgard-build.rn7.dev.br", "custom_domain": true }]
+}
